@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沙湾奶皇后 Shawan Milk Queen 官方网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+        }
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #F5F5DC;
+            --accent-color: #C41E3A;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        /* 导航栏样式 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .logo span {
+            color: var(--accent-color);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        .lang-buttons {
+            display: flex;
+            gap: 8px;
+            margin-left: 10px;
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--primary-color);
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lang-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* 首屏Banner */
+        .hero {
+            margin-top: 80px;
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('') center/cover no-repeat;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero-content h1 {
+            font-size: 56px;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero-content h2 {
+            font-size: 24px;
+            color: var(--white);
+            margin-bottom: 40px;
+            font-weight: 40px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .hero-quote {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            color: var(--white);
+            font-style: italic;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        /* 通用板块样式 */
+        .section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        .bg-light {
+            background-color: var(--light-gray);
+        }
+        /* 品牌故事板块 */
+        .brand-story-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+        .brand-story-content p {
+            margin-bottom: 20px;
+        }
+        /* 门店板块 */
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .store-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 40px;
+            transition: transform 0.3s;
+        }
+        .store-card:hover {
+            transform: translateY(-5px);
+        }
+        .store-card h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .store-card p {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        .store-card .store-type {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        /* 产品板块 */
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .tab-btn {
+            padding: 10px 30px;
+            border: 2px solid var(--primary-color);
+            background-color: var(--white);
+            color: var(--primary-color);
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card h3 {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .product-card p {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        /* 优势板块 */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        .advantage-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 40px;
+        }
+        .advantage-card h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .advantage-card p {
+            font-size: 16px;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        /* 页脚 */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 20px 20px;
+        }
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .footer-column p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        .footer-column a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-column a:hover {
+            color: var(--white);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+        }
+        /* 响应式适配 */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            .hero-content h2 {
+                font-size: 20px;
+            }
+            .section-title {
+                font-size: 30px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            .hero {
+                height: auto;
+                padding: 100px 20px;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .stores-grid, .product-grid, .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<header>
+    <div class="nav-container">
+        <div class="logo">沙湾<span>奶皇后</span> Shawan Milk Queen</div>
+        <nav>
+            <ul>
+                <li><a href="#home" data-i18n="nav.home">首页</a></li>
+                <li><a href="#about" data-i18n="nav.story">品牌故事</a></li>
+                <li><a href="#stores" data-i18n="nav.stores">线下门店</a></li>
+                <li><a href="#products" data-i18n="nav.products">产品中心</a></li>
+                <li><a href="#advantages" data-i18n="nav.advantages">核心优势</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">联系我们</a></li>
+                <li class="lang-buttons">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="jp">日本語</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- 首屏 -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1 data-i18n="hero.title">沙湾奶皇后 Shawan Milk Queen</h1>
+        <h2 data-i18n="hero.subtitle">始于1982 · 非遗匠心 · 四十年坚守一碗好奶</h2>
+        <div class="hero-quote" data-i18n="hero.quote">
+            "我想专心做精做美做好品质企业，不盲目追求规模，坚守诚信，发扬工匠精神，养好一头牛，做好一碗甜品，传好一门手艺，推广好一项非物质文化遗产。"<br>—— 创始人 王秀甜
+        </div>
+    </div>
+</section>
+
+<!-- 品牌故事 -->
+<section class="section" id="about">
+    <h2 class="section-title" data-i18n="story.title">品牌故事</h2>
+    <p class="section-subtitle" data-i18n="story.sub">从两头水牛到广州地标，四十年坚守与传承</p>
+    <div class="brand-story-content">
+        <p data-i18n="story.p1">沙湾奶皇后的故事始于1982年，创始人王秀甜从两头水牛起家，白手起家打造了如今享誉广州的甜品品牌。四十年后的今天，她位于沙湾古镇的甜品店，已成为当地的文化地标。</p>
+        <p data-i18n="story.p2">"奶皇后"这个名字，既承载着她对水牛奶制品的极致掌控与精湛技艺，也彰显了她在行业内的领军地位。从最初的小型养殖作坊，发展为集养殖、生产、零售于一体的全产业链企业，品牌始终坚守初心。2020年，王秀甜荣获"全国劳动模范"称号，这是对她四十年坚守品质的最高认可。</p>
+    </div>
+</section>
+
+<!-- 线下门店 -->
+<section class="section bg-light" id="stores">
+    <h2 class="section-title" data-i18n="stores.title">线下门店</h2>
+    <p class="section-subtitle" data-i18n="stores.sub">传统与现代融合，坚守岭南甜品本味</p>
+    <div class="stores-grid">
+        <div class="store-card">
+            <div class="store-type" data-i18n="store.flag">旗舰店</div>
+            <h3 data-i18n="store.name1">沙湾古镇店</h3>
+            <p><strong data-i18n="store.time">成立时间：</strong>2011</p>
+            <p><strong data-i18n="store.feature">门店特色：</strong><span data-i18n="store.desc1">传统岭南建筑风格，大理石餐桌，兼具美食体验与文化打卡属性，是沙湾古镇的标志性目的地</span></p>
+            <p><strong data-i18n="store.addr">门店地址：</strong><span data-i18n="store.addr1">中国大陆广东省广州市番禺区沙湾古镇</span></p>
+        </div>
+        <div class="store-card">
+            <div class="store-type" data-i18n="store.city">城市门店</div>
+            <h3 data-i18n="store.name2">广州太古汇店</h3>
+            <p><strong data-i18n="store.time">成立时间：</strong>2020</p>
+            <p><strong data-i18n="store.feature">门店特色：</strong><span data-i18n="store.desc2">现代化商场场景，是品牌面向年轻消费群体的试验与展示窗口，验证了品牌在旅游客群之外的城市年轻市场的吸引力</span></p>
+            <p><strong data-i18n="store.addr">门店地址：</strong><span data-i18n="store.addr2">中国大陆广东省广州市天河区太古汇商场</span></p>
+        </div>
+    </div>
+</section>
+
+<!-- 产品 -->
+<section class="section" id="products">
+    <h2 class="section-title" data-i18n="prod.title">产品中心</h2>
+    <p class="section-subtitle" data-i18n="prod.sub">坚守当日鲜奶，无隔夜产品，传承非遗制作技艺</p>
+    <div class="product-tabs">
+        <button class="tab-btn active" onclick="changeTab('fresh')" data-i18n="prod.fresh">门店专属现制甜品</button>
+        <button class="tab-btn" onclick="changeTab('packaged')" data-i18n="prod.pack">包装伴手礼系列</button>
+    </div>
+
+    <div class="product-content" id="fresh-tab">
+        <div class="product-grid">
+            <div class="product-card"><h3 data-i18n="p.f1">姜埋奶</h3><p data-i18n="p.d1">品牌招牌产品，非遗核心技艺，制作过程需要极致精准的温度控制，呈现水牛奶与姜汁的完美融合</p></div>
+            <div class="product-card"><h3 data-i18n="p.f2">双皮奶</h3><p data-i18n="p.d2">岭南经典传统蒸制甜品，以当日新鲜水牛奶为原料，呈现双层嫩滑口感，还原最纯正的广式风味</p></div>
+            <div class="product-card"><h3 data-i18n="p.f3">香芋炒奶</h3><p data-i18n="p.d3">创始人王秀甜独创产品，将香芋的绵密与水牛奶的醇厚完美结合，是品牌独有的创新经典</p></div>
+            <div class="product-card"><h3 data-i18n="p.f4">炸牛奶</h3><p data-i18n="p.d4">外酥里嫩，外皮金黄酥脆，内里奶香浓郁，是广式甜品中的经典代表，深受各年龄段消费者喜爱</p></div>
+            <div class="product-card"><h3 data-i18n="p.f5">奶米糕</h3><p data-i18n="p.d5">以水牛奶为核心原料制作的传统糕点，口感软糯，奶香浓郁，是门店经典的日常甜品选择</p></div>
+        </div>
+    </div>
+
+    <div class="product-content" id="packaged-tab" style="display:none;">
+        <div class="product-grid">
+            <div class="product-card"><h3 data-i18n="p.p1">奶皇后礼盒</h3><p data-i18n="p.pd1">品牌核心伴手礼产品，内含多款经典产品组合，兼顾自享与送礼需求，是广式非遗甜品的代表性礼盒</p></div>
+            <div class="product-card"><h3 data-i18n="p.p2">姜埋奶即冲粉</h3><p data-i18n="p.pd2">还原门店招牌风味的即冲产品，让消费者在家就能轻松制作正宗沙湾姜埋奶，打破地域与场景限制</p></div>
+            <div class="product-card"><h3 data-i18n="p.p3">奶白米饼</h3><p data-i18n="p.pd3">以水牛奶为原料制作的酥脆米饼，口感清甜，奶香浓郁，是便携的休闲零食选择</p></div>
+            <div class="product-card"><h3 data-i18n="p.p4">奶酥饼</h3><p data-i18n="p.pd4">水牛奶制作的特色酥饼，口感松化，奶香醇厚，是经典的广式糕点伴手礼</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- 核心优势 -->
+<section class="section bg-light" id="advantages">
+    <h2 class="section-title" data-i18n="adv.title">品牌核心优势</h2>
+    <p class="section-subtitle" data-i18n="adv.sub">三大核心支柱，构筑品牌不可复制的竞争力</p>
+    <div class="advantages-grid">
+        <div class="advantage-card"><h3 data-i18n="adv.t1">垂直整合的全产业链</h3><p data-i18n="adv.d1">与绝大多数从第三方采购乳制品的甜品店不同，沙湾奶皇后拥有完全自有的水牛牧场（现迁至湛江，仍由品牌直接管控）。甜品的风味由新鲜度决定，口感由牛奶品质决定，而全产业链垂直整合模式，为产品的新鲜度与品质提供了100%的保障。</p></div>
+        <div class="advantage-card"><h3 data-i18n="adv.t2">非物质文化遗产资质</h3><p data-i18n="adv.d2">创始人王秀甜拥有官方认证的"沙湾水牛奶传统小食制作技艺"非遗传承人身份。这一资质不仅为品牌带来了独一无二的行业声望与公信力，更赋予了品牌传承、教学、发扬这项传统技艺的使命与责任。</p></div>
+        <div class="advantage-card"><h3 data-i18n="adv.t3">四十年坚守的品质理念</h3><p data-i18n="adv.d3">"无隔夜产品"是品牌刻入骨髓的核心原则。每一份甜品，都只使用当日现挤的鲜奶制作，无任何例外。正是这份极致的品质坚守，赢得了消费者四十年的信赖，构筑了品牌最坚实的口碑护城河。</p></div>
+    </div>
+</section>
+
+<!-- 联系我们 -->
+<section class="section bg-light" id="contact">
+    <h2 class="section-title" data-i18n="contact.title">联系我们</h2>
+    <p class="section-subtitle" data-i18n="contact.sub">四十年匠心坚守，期待与您相遇</p>
+    <div class="footer-container" style="max-width:1400px; margin:0 auto; color:var(--text-dark)">
+        <div class="footer-column">
+            <h3 data-i18n="contact.shawan">沙湾古镇旗舰店</h3>
+            <p data-i18n="contact.addr1">地址：中国大陆广东省广州市番禺区沙湾古镇</p>
+            <p data-i18n="contact.time1">营业时间：每日9:00-21:00</p>
+        </div>
+        <div class="footer-column">
+            <h3 data-i18n="contact.taikoo">广州太古汇店</h3>
+            <p data-i18n="contact.addr2">地址：中国大陆广东省广州市天河区太古汇商场</p>
+            <p data-i18n="contact.time2">营业时间：每日10:00-22:00</p>
+        </div>
+        <div class="footer-column">
+            <h3 data-i18n="contact.business">商务合作</h3>
+            <p data-i18n="contact.coop1">电商合作：合作邮箱（示例）</p>
+            <p data-i18n="contact.coop2">联名授权：合作邮箱（示例）</p>
+            <p data-i18n="contact.coop3">非遗研学：合作邮箱（示例）</p>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3 data-i18n="footer.name">沙湾奶皇后 Shawan Milk Queen</h3>
+            <p data-i18n="footer.slogan">始于1982 · 非遗匠心 · 四十年坚守一碗好奶</p>
+            <p data-i18n="footer.heritage">国家级非物质文化遗产"沙湾水牛奶传统小食制作技艺"传承单位</p>
+        </div>
+        <div class="footer-column">
+            <h3 data-i18n="footer.nav">快速导航</h3>
+            <p><a href="#home" data-i18n="nav.home">首页</a></p>
+            <p><a href="#about" data-i18n="nav.story">品牌故事</a></p>
+            <p><a href="#stores" data-i18n="nav.stores">线下门店</a></p>
+            <p><a href="#products" data-i18n="nav.products">产品中心</a></p>
+        </div>
+        <div class="footer-column">
+            <h3 data-i18n="footer.more">更多内容</h3>
+            <p><a href="#advantages" data-i18n="nav.advantages">核心优势</a></p>
+            <p><a href="#contact" data-i18n="nav.contact">联系我们</a></p>
+        </div>
+    </div>
+    <div class="copyright" data-i18n="footer.copy">© 2024 沙湾奶皇后 Shawan Milk Queen 版权所有 | 本网站内容仅用于项目展示</div>
+</footer>
+
+<script>
+    // 产品切换
+    function changeTab(tabName) {
+        document.getElementById('fresh-tab').style.display = 'none';
+        document.getElementById('packaged-tab').style.display = 'none';
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        if (tabName === 'fresh') {
+            document.getElementById('fresh-tab').style.display = 'block';
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        } else {
+            document.getElementById('packaged-tab').style.display = 'block';
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        }
+    }
+
+    // 多语言翻译数据
+    const i18nData = {
+        zh: {
+            "nav.home":"首页",
+            "nav.story":"品牌故事",
+            "nav.stores":"线下门店",
+            "nav.products":"产品中心",
+            "nav.advantages":"核心优势",
+            "nav.contact":"联系我们",
+            "hero.title":"沙湾奶皇后 Shawan Milk Queen",
+            "hero.subtitle":"始于1982 · 非遗匠心 · 四十年坚守一碗好奶",
+            "hero.quote":"我想专心做精做美做好品质企业，不盲目追求规模，坚守诚信，发扬工匠精神，养好一头牛，做好一碗甜品，传好一门手艺，推广好一项非物质文化遗产。—— 创始人 王秀甜",
+            "story.title":"品牌故事",
+            "story.sub":"从两头水牛到广州地标，四十年坚守与传承",
+            "story.p1":"沙湾奶皇后的故事始于1982年，创始人王秀甜从两头水牛起家，白手起家打造了如今享誉广州的甜品品牌。四十年后的今天，她位于沙湾古镇的甜品店，已成为当地的文化地标。",
+            "story.p2":"“奶皇后”这个名字，既承载着她对水牛奶制品的极致掌控与精湛技艺，也彰显了她在行业内的领军地位。从最初的小型养殖作坊，发展为集养殖、生产、零售于一体的全产业链企业，品牌始终坚守初心。2020年，王秀甜荣获“全国劳动模范”称号，这是对她四十年坚守品质的最高认可。",
+            "stores.title":"线下门店",
+            "stores.sub":"传统与现代融合，坚守岭南甜品本味",
+            "store.flag":"旗舰店",
+            "store.city":"城市门店",
+            "store.name1":"沙湾古镇店",
+            "store.name2":"广州太古汇店",
+            "store.time":"成立时间：",
+            "store.feature":"门店特色：",
+            "store.addr":"门店地址：",
+            "store.desc1":"传统岭南建筑风格，大理石餐桌，兼具美食体验与文化打卡属性，是沙湾古镇的标志性目的地",
+            "store.desc2":"现代化商场场景，是品牌面向年轻消费群体的试验与展示窗口，验证了品牌在旅游客群之外的城市年轻市场的吸引力",
+            "store.addr1":"中国大陆广东省广州市番禺区沙湾古镇",
+            "store.addr2":"中国大陆广东省广州市天河区太古汇商场",
+            "prod.title":"产品中心",
+            "prod.sub":"坚守当日鲜奶，无隔夜产品，传承非遗制作技艺",
+            "prod.fresh":"门店专属现制甜品",
+            "prod.pack":"包装伴手礼系列",
+            "p.f1":"姜埋奶",
+            "p.d1":"品牌招牌产品，非遗核心技艺，制作过程需要极致精准的温度控制，呈现水牛奶与姜汁的完美融合",
+            "p.f2":"双皮奶",
+            "p.d2":"岭南经典传统蒸制甜品，以当日新鲜水牛奶为原料，呈现双层嫩滑口感，还原最纯正的广式风味",
+            "p.f3":"香芋炒奶",
+            "p.d3":"创始人王秀甜独创产品，将香芋的绵密与水牛奶的醇厚完美结合，是品牌独有的创新经典",
+            "p.f4":"炸牛奶",
+            "p.d4":"外酥里嫩，外皮金黄酥脆，内里奶香浓郁，是广式甜品中的经典代表，深受各年龄段消费者喜爱",
+            "p.f5":"奶米糕",
+            "p.d5":"以水牛奶为核心原料制作的传统糕点，口感软糯，奶香浓郁，是门店经典的日常甜品选择",
+            "p.p1":"奶皇后礼盒",
+            "p.pd1":"品牌核心伴手礼产品，内含多款经典产品组合，兼顾自享与送礼需求，是广式非遗甜品的代表性礼盒",
+            "p.p2":"姜埋奶即冲粉",
+            "p.pd2":"还原门店招牌风味的即冲产品，让消费者在家就能轻松制作正宗沙湾姜埋奶，打破地域与场景限制",
+            "p.p3":"奶白米饼",
+            "p.pd3":"以水牛奶为原料制作的酥脆米饼，口感清甜，奶香浓郁，是便携的休闲零食选择",
+            "p.p4":"奶酥饼",
+            "p.pd4":"水牛奶制作的特色酥饼，口感松化，奶香醇厚，是经典的广式糕点伴手礼",
+            "adv.title":"品牌核心优势",
+            "adv.sub":"三大核心支柱，构筑品牌不可复制的竞争力",
+            "adv.t1":"垂直整合的全产业链",
+            "adv.d1":"与绝大多数从第三方采购乳制品的甜品店不同，沙湾奶皇后拥有完全自有的水牛牧场（现迁至湛江，仍由品牌直接管控）。甜品的风味由新鲜度决定，口感由牛奶品质决定，而全产业链垂直整合模式，为产品的新鲜度与品质提供了100%的保障。",
+            "adv.t2":"非物质文化遗产资质",
+            "adv.d2":"创始人王秀甜拥有官方认证的“沙湾水牛奶传统小食制作技艺”非遗传承人身份。这一资质不仅为品牌带来了独一无二的行业声望与公信力，更赋予了品牌传承、教学、发扬这项传统技艺的使命与责任。",
+            "adv.t3":"四十年坚守的品质理念",
+            "adv.d3":"“无隔夜产品”是品牌刻入骨髓的核心原则。每一份甜品，都只使用当日现挤的鲜奶制作，无任何例外。正是这份极致的品质坚守，赢得了消费者四十年的信赖，构筑了品牌最坚实的口碑护城河。",
+            "contact.title":"联系我们",
+            "contact.sub":"四十年匠心坚守，期待与您相遇",
+            "contact.shawan":"沙湾古镇旗舰店",
+            "contact.taikoo":"广州太古汇店",
+            "contact.business":"商务合作",
+            "contact.addr1":"地址：中国大陆广东省广州市番禺区沙湾古镇",
+            "contact.time1":"营业时间：每日9:00-21:00",
+            "contact.addr2":"地址：中国大陆广东省广州市天河区太古汇商场",
+            "contact.time2":"营业时间：每日10:00-22:00",
+            "contact.coop1":"电商合作：合作邮箱（示例）",
+            "contact.coop2":"联名授权：合作邮箱（示例）",
+            "contact.coop3":"非遗研学：合作邮箱（示例）",
+            "footer.name":"沙湾奶皇后 Shawan Milk Queen",
+            "footer.slogan":"始于1982 · 非遗匠心 · 四十年坚守一碗好奶",
+            "footer.heritage":"国家级非物质文化遗产“沙湾水牛奶传统小食制作技艺”传承单位",
+            "footer.nav":"快速导航",
+            "footer.more":"更多内容",
+            "footer.copy":"© 2024 沙湾奶皇后 Shawan Milk Queen 版权所有 | 本网站内容仅用于项目展示"
+        },
+        en: {
+            "nav.home":"Home",
+            "nav.story":"Our Story",
+            "nav.stores":"Stores",
+            "nav.products":"Products",
+            "nav.advantages":"Advantages",
+            "nav.contact":"Contact",
+            "hero.title":"Shawan Milk Queen",
+            "hero.subtitle":"Since 1982 · Intangible Cultural Heritage · 40 Years of Dedication to Quality Milk Desserts",
+            "hero.quote":"I want to build a refined and quality-focused enterprise, uphold integrity, promote craftsmanship, raise good buffaloes, make perfect desserts, inherit skills, and spread intangible cultural heritage. — Founder Wang Xiutian",
+            "story.title":"Brand Story",
+            "story.sub":"From two buffaloes to a Guangzhou landmark, 40 years of persistence and inheritance",
+            "story.p1":"The story of Shawan Milk Queen began in 1982. Founder Wang Xiutian started with two buffaloes and built a famous dessert brand in Guangzhou. Today, her shop in Shawan Ancient Town has become a local cultural landmark.",
+            "story.p2":"The name 'Milk Queen' reflects her supreme skill in water buffalo milk products. From a small farm to a full-industry-chain enterprise, the brand has always stayed true to its roots. In 2020, Wang Xiutian was awarded the National Model Worker.",
+            "stores.title":"Stores",
+            "stores.sub":"Blending tradition and modernity, preserving Lingnan dessert flavors",
+            "store.flag":"Flagship Store",
+            "store.city":"City Store",
+            "store.name1":"Shawan Ancient Town",
+            "store.name2":"Guangzhou Taikoo Hui",
+            "store.time":"Founded:",
+            "store.feature":"Features:",
+            "store.addr":"Address:",
+            "store.desc1":"Traditional Lingnan architecture, marble tables, cultural landmark and food experience in Shawan Ancient Town",
+            "store.desc2":"Modern shopping mall scene, a showcase for young customers, proving the brand’s appeal beyond tourist areas",
+            "store.addr1":"Shawan Ancient Town, Panyu District, Guangzhou, Guangdong, China",
+            "store.addr2":"Taikoo Hui Mall, Tianhe District, Guangzhou, Guangdong, China",
+            "prod.title":"Products",
+            "prod.sub":"Fresh milk daily, no overnight products, inheriting intangible cultural heritage skills",
+            "prod.fresh":"Fresh Desserts",
+            "prod.pack":"Gift Packages",
+            "p.f1":"Ginger Milk Curd",
+            "p.d1":"Signature dish, intangible cultural heritage skill, precise temperature control for perfect fusion of buffalo milk and ginger",
+            "p.f2":"Double Skin Milk Pudding",
+            "p.d2":"Classic steamed dessert with fresh daily buffalo milk, smooth double-layer texture",
+            "p.f3":"Taro Milk Stir",
+            "p.d3":"Original creation by Founder Wang Xiutian, combining smooth taro and rich buffalo milk",
+            "p.f4":"Fried Milk",
+            "p.d4":"Crispy outside, creamy inside, classic Cantonese dessert loved by all ages",
+            "p.f5":"Milk Rice Cake",
+            "p.d5":"Traditional cake made with buffalo milk, soft and full of milk flavor",
+            "p.p1":"Milk Queen Gift Box",
+            "p.pd1":"Premium gift set with classic desserts, perfect for gifts and personal enjoyment",
+            "p.p2":"Instant Ginger Milk Powder",
+            "p.pd2":"Enjoy authentic Shawan Ginger Milk at home, easy to prepare",
+            "p.p3":"Milk Rice Crackers",
+            "p.pd3":"Crispy crackers made with buffalo milk, sweet and creamy snack",
+            "p.p4":"Milk Pastry",
+            "p.pd4":"Flaky pastry with rich milk flavor, classic Cantonese gift",
+            "adv.title":"Core Advantages",
+            "adv.sub":"Three core strengths building unbeatable competitiveness",
+            "adv.t1":"Fully Integrated Industry Chain",
+            "adv.d1":"Unlike most dessert shops, we own our own buffalo farm (now in Zhanjiang, directly managed). Freshness and quality are fully guaranteed.",
+            "adv.t2":"Intangible Cultural Heritage Status",
+            "adv.d2":"Founder Wang Xiutian is an official inheritor of Shawan Water Buffalo Milk Snack Making Skills, bringing unique reputation and responsibility.",
+            "adv.t3":"40 Years of Quality Commitment",
+            "adv.d3":"No overnight products. All desserts use fresh milk daily. This strict principle has earned 40 years of trust.",
+            "contact.title":"Contact Us",
+            "contact.sub":"40 years of craftsmanship, looking forward to meeting you",
+            "contact.shawan":"Shawan Ancient Town Flagship Store",
+            "contact.taikoo":"Guangzhou Taikoo Hui Store",
+            "contact.business":"Business Cooperation",
+            "contact.addr1":"Address: Shawan Ancient Town, Panyu District, Guangzhou, China",
+            "contact.time1":"Hours: 9:00-21:00 daily",
+            "contact.addr2":"Address: Taikoo Hui Mall, Tianhe District, Guangzhou, China",
+            "contact.time2":"Hours: 10:00-22:00 daily",
+            "contact.coop1":"E-commerce: coop@example.com",
+            "contact.coop2":"Licensing: brand@example.com",
+            "contact.coop3":"Study: heritage@example.com",
+            "footer.name":"Shawan Milk Queen",
+            "footer.slogan":"Since 1982 · Intangible Cultural Heritage · 40 Years of Quality",
+            "footer.heritage":"Inheritor of National Intangible Cultural Heritage: Shawan Water Buffalo Milk Snack Skills",
+            "footer.nav":"Quick Links",
+            "footer.more":"More",
+            "footer.copy":"© 2024 Shawan Milk Queen All Rights Reserved | For display only"
+        },
+        jp: {
+            "nav.home":"ホーム",
+            "nav.story":"ストーリー",
+            "nav.stores":"店舗",
+            "nav.products":"商品",
+            "nav.advantages":"強み",
+            "nav.contact":"お問い合わせ",
+            "hero.title":"沙湾ミルククイーン",
+            "hero.subtitle":"1982年創業・無形文化遺産・40年間続く良質なミルクデザート",
+            "hero.quote":"私は良心的で品質重視の企業を目指し、誠実さと職人魂を守り、良い水牛を育て、美味しいデザートを作り、技術を伝承し、無形文化遺産を広めたい。—— 創業者 王秀甜",
+            "story.title":"ブランドストーリー",
+            "story.sub":"2頭の水牛から広州の名店へ、40年のこだわりと継承",
+            "story.p1":"沙湾ミルククイーンは1982年、創業者の王秀甜が2頭の水牛から始めたデザートブランドです。今では沙湾古鎮の店が地元の文化的ランドマークになっています。",
+            "story.p2":"「ミルククイーン」の名には、水牛ミルク製品への絶対的なこだわりが込められています。農場から製造・販売まで一貫体制で、品質を守り続けています。2020年、王秀甜は全国労働模範に選ばれました。",
+            "stores.title":"店舗案内",
+            "stores.sub":"伝統と現代が融合、岭南のデザートの味を守る",
+            "store.flag":"旗艦店",
+            "store.city":"都市店",
+            "store.name1":"沙湾古鎮店",
+            "store.name2":"広州太古汇店",
+            "store.time":"開業：",
+            "store.feature":"特徴：",
+            "store.addr":"住所：",
+            "store.desc1":"伝統的岭南建築、大理石テーブル、食事と文化体験ができる沙湾古鎮の名所",
+            "store.desc2":"近代的ショッピングモール内、若者向けの最新ブランド発信拠点",
+            "store.addr1":"中国広東省広州市番禺区沙湾古鎮",
+            "store.addr2":"中国広東省広州市天河区太古汇モール",
+            "prod.title":"商品ラインナップ",
+            "prod.sub":"当日搾りの新鮮ミルク使用、残り物は作りません、無形文化遺産の技術を継承",
+            "prod.fresh":"店内製作デザート",
+            "prod.pack":"ギフト商品",
+            "p.f1":"ジンジャーミルク",
+            "p.d1":"看板商品、無形文化遺産の技術、温度を徹底管理し水牛ミルクとショウガを融合",
+            "p.f2":"ダブルスキンミルクプリン",
+            "p.d2":"伝統的蒸しデザート、新鮮な水牛ミルク使用、なめらかな二段層",
+            "p.f3":"タロイモミルク炒め",
+            "p.d3":"創業者考案のオリジナル、なめらかなタロイモと濃厚ミルクが絶品",
+            "p.f4":"フライドミルク",
+            "p.d4":"外はサクサク、中はクリーミー、老若男女に人気の広州デザート",
+            "p.f5":"ミルク米菓子",
+            "p.d5":"水牛ミルク使用の伝統菓子、もちもち食感とミルクの風味",
+            "p.p1":"ミルククイーンギフトボックス",
+            "p.pd1":"看板デザートセット、ギフトや自分用に最適",
+            "p.p2":"インスタントジンジャーミルク",
+            "p.pd2":"自宅で本格沙湾ジンジャーミルクが楽しめる",
+            "p.p3":"ミルク米クラッカー",
+            "p.pd3":"水牛ミルク使用のサクサク菓子、甘さ控えめで美味しい",
+            "p.p4":"ミルクペストリー",
+            "p.pd4":"ミルク風味たっぷりのサクサク焼き菓子、広州土産に人気",
+            "adv.title":"コア強み",
+            "adv.sub":"3つの柱が作る独自の強み",
+            "adv.t1":"一貫生産体制",
+            "adv.d1":"他店と違い、自社工場・農場を保有（湛江市に移転）。鮮度と品質を100%保証",
+            "adv.t2":"無形文化遺産認定",
+            "adv.d2":"創業者が沙湾水牛ミルク製法の無形文化遺産保持者。希少価値と信頼性",
+            "adv.t3":"40年間の品質こだわり",
+            "adv.d3":"「当日作り・当日販売」を徹底。新鮮なミルクだけを使用し、40年間の信頼を築いています。",
+            "contact.title":"お問い合わせ",
+            "contact.sub":"40年の職人魂、あなたとの出会いを楽しみにしています",
+            "contact.shawan":"沙湾古鎮旗艦店",
+            "contact.taikoo":"広州太古汇店",
+            "contact.business":"業務提携",
+            "contact.addr1":"住所：中国広東省広州市番禺区沙湾古鎮",
+            "contact.time1":"営業時間：毎日9:00-21:00",
+            "contact.addr2":"住所：中国広東省広州市天河区太古汇モール",
+            "contact.time2":"営業時間：毎日10:00-22:00",
+            "contact.coop1":"EC提携：coop@example.com",
+            "contact.coop2":"ライセンス：brand@example.com",
+            "contact.coop3":"文化研修：heritage@example.com",
+            "footer.name":"沙湾ミルククイーン",
+            "footer.slogan":"1982年創業・無形文化遺産・40年間の品質へのこだわり",
+            "footer.heritage":"国家級無形文化遺産「沙湾水牛ミルク伝統製法」継承拠点",
+            "footer.nav":"クイックリンク",
+            "footer.more":"その他",
+            "footer.copy":"© 2024 沙湾ミルククイーン 全著作権所有｜展示用のみ"
+        }
+    };
+
+    // 语言切换
+    function setLang(lang) {
+        const data = i18nData[lang];
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (data[key]) el.textContent = data[key];
+        });
+        document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("active"));
+        document.querySelector(`[data-lang="${lang}"]`).classList.add("active");
+        document.documentElement.lang = lang;
+    }
+
+    // 绑定点击
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.addEventListener("click", () => setLang(btn.dataset.lang));
+    });
+</script>
+</body>
+</html>
